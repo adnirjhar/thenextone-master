@@ -1,4 +1,4 @@
-package com.thenextone.app.models;
+package com.thenextone.core.models;
 
 public class AuthenticationResponse {
 

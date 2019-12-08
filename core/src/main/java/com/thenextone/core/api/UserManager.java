@@ -1,10 +1,9 @@
-package com.thenextone.app.usermanager;
+package com.thenextone.core.api;
 
-import com.thenextone.app.models.AuthenticationRequest;
-import com.thenextone.app.models.AuthenticationResponse;
-import com.thenextone.core.users.dto.NewUser;
+import com.thenextone.core.models.AuthenticationRequest;
+import com.thenextone.core.models.AuthenticationResponse;
+import com.thenextone.core.services.UserService;
 import com.thenextone.core.users.dto.User;
-import com.thenextone.core.users.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,8 +24,8 @@ public class UserManager {
     }
 
     @PostMapping(value = "/add")
-    private ResponseEntity<User> getAllUsers(@RequestBody NewUser newUser) {
-        return new ResponseEntity<User>(this.userService.addUser(newUser), HttpStatus.OK);
+    private ResponseEntity<User> getAllUsers(@RequestBody User user) throws Exception {
+        return new ResponseEntity<User>(this.userService.addUser(user), HttpStatus.OK);
     }
 
     @PostMapping(value = "/authenticate")

@@ -61,9 +61,9 @@ public class JWTRequestFilter extends OncePerRequestFilter {
         httpServletResponse.setStatus(HttpServletResponse.SC_FORBIDDEN);
         httpServletResponse.setContentType("application/json;charset=UTF-8");
         JsonObject error403 = new JsonObject();
-        error403.addProperty("status", HttpServletResponse.SC_FORBIDDEN);
+        error403.addProperty("status", HttpServletResponse.SC_UNAUTHORIZED);
         error403.addProperty("timestamp", LocalDateTime.now().toString());
-        error403.addProperty("error", "Forbidden");
+        error403.addProperty("error", "Bad credentials");
         error403.addProperty("message", "Access denied");
         error403.addProperty("path", httpServletRequest.getServletPath());
         httpServletResponse.getWriter().write(error403.toString());
