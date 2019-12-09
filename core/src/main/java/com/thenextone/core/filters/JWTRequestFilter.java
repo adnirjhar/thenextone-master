@@ -1,10 +1,12 @@
 package com.thenextone.core.filters;
 
-import com.google.gson.JsonObject;
+import com.thenextone.core.exceptions.CoreErrorHandler;
+import com.thenextone.core.exceptions.UnAuthorizedException;
 import com.thenextone.core.util.JWTUtil;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.SignatureException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,7 +20,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.time.LocalDateTime;
 
 @Component
 public class JWTRequestFilter extends OncePerRequestFilter {
@@ -30,7 +31,7 @@ public class JWTRequestFilter extends OncePerRequestFilter {
     private UserDetailsService userDetailsService;
 
     @Override
-    protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, ExpiredJwtException, IOException {
+    protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws UnAuthorizedException, ServletException, IOException {
 
         try {
             final String header = httpServletRequest.getHeader("Authorization");
@@ -52,20 +53,12 @@ public class JWTRequestFilter extends OncePerRequestFilter {
             filterChain.doFilter(httpServletRequest,httpServletResponse);
         }
         catch (ExpiredJwtException | SignatureException ex) {
-            return403onForbiddenJWT(httpServletRequest, httpServletResponse);
+            CoreErrorHandler.writeExceptionToResponse(
+                    "Un Authorized fellow",
+                    httpServletRequest,
+                    httpServletResponse,
+                    HttpStatus.UNAUTHORIZED
+            );
         }
-    }
-
-    private void return403onForbiddenJWT(HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse) throws IOException {
-
-        httpServletResponse.setStatus(HttpServletResponse.SC_FORBIDDEN);
-        httpServletResponse.setContentType("application/json;charset=UTF-8");
-        JsonObject error403 = new JsonObject();
-        error403.addProperty("status", HttpServletResponse.SC_UNAUTHORIZED);
-        error403.addProperty("timestamp", LocalDateTime.now().toString());
-        error403.addProperty("error", "Bad credentials");
-        error403.addProperty("message", "Access denied");
-        error403.addProperty("path", httpServletRequest.getServletPath());
-        httpServletResponse.getWriter().write(error403.toString());
     }
 }

@@ -1,6 +1,6 @@
 package com.thenextone.core.api;
 
-import com.thenextone.core.exceptions.GroupNotFoundException;
+import com.thenextone.core.exceptions.UnAuthorizedException;
 import com.thenextone.core.groups.dto.Group;
 import com.thenextone.core.groups.repository.GroupRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +26,6 @@ public class GroupManager {
 
     @GetMapping(value = "/test")
     private ResponseEntity<List<Group>> test() {
-        throw new GroupNotFoundException("No group found");
+        throw new UnAuthorizedException("No group found");
     }
 }
