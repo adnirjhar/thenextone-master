@@ -1,6 +1,6 @@
-package com.thenextone.core.users.repository;
+package com.thenextone.core.repositories;
 
-import com.thenextone.core.users.dto.User;
+import com.thenextone.core.entities.User;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

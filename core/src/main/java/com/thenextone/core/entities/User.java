@@ -1,13 +1,12 @@
-package com.thenextone.core.users.dto;
+package com.thenextone.core.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.thenextone.core.groups.dto.Group;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity()
 @Table(name = "Users")
@@ -33,18 +32,18 @@ public class User {
 
     @ManyToMany
     @JoinTable(
-            name = "users_groups_map",
+            name = "map_users_groups",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "group_id", referencedColumnName = "id"))
     @JsonIgnoreProperties("users")
     @NotNull
-    private Set<Group> groups = new HashSet<>();
+    private List<Group> groups = new ArrayList<>();
 
     public User() {
 
     }
 
-    public User(String firstName, String lastName, String email, String password, Set<Group> groups) {
+    public User(String firstName, String lastName, String email, String password, List<Group> groups) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -84,11 +83,11 @@ public class User {
         this.password = password;
     }
 
-    public Set<Group> getGroups() {
+    public List<Group> getGroups() {
         return groups;
     }
 
-    public void setGroups(Set<Group> groups) {
+    public void setGroups(List<Group> groups) {
         this.groups = groups;
     }
 }

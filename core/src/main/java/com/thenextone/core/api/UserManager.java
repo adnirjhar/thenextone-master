@@ -1,9 +1,9 @@
 package com.thenextone.core.api;
 
+import com.thenextone.core.entities.User;
 import com.thenextone.core.models.AuthenticationRequest;
 import com.thenextone.core.models.AuthenticationResponse;
 import com.thenextone.core.services.UserService;
-import com.thenextone.core.users.dto.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

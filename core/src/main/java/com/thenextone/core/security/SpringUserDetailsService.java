@@ -1,7 +1,7 @@
 package com.thenextone.core.security;
 
-import com.thenextone.core.users.dto.User;
-import com.thenextone.core.users.repository.UserRepository;
+import com.thenextone.core.entities.User;
+import com.thenextone.core.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

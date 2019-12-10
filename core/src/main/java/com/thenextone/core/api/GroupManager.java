@@ -1,8 +1,8 @@
 package com.thenextone.core.api;
 
+import com.thenextone.core.entities.Group;
 import com.thenextone.core.exceptions.UnAuthorizedException;
-import com.thenextone.core.groups.dto.Group;
-import com.thenextone.core.groups.repository.GroupRepository;
+import com.thenextone.core.repositories.GroupRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

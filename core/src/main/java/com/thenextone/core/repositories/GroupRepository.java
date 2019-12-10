@@ -1,6 +1,6 @@
-package com.thenextone.core.groups.repository;
+package com.thenextone.core.repositories;
 
-import com.thenextone.core.groups.dto.Group;
+import com.thenextone.core.entities.Group;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

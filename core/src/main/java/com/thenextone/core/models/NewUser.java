@@ -1,6 +1,6 @@
 package com.thenextone.core.models;
 
-import com.thenextone.core.groups.dto.Group;
+import com.thenextone.core.entities.Group;
 
 import java.util.Set;
 

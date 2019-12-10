@@ -1,6 +1,6 @@
 package com.thenextone.core.util;
 
-import com.thenextone.core.users.dto.User;
+import com.thenextone.core.entities.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

@@ -1,15 +1,14 @@
-package com.thenextone.core.groups.dto;
+package com.thenextone.core.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.thenextone.core.users.dto.User;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity()
-@Table(name = "UserGroups")
-public class Group {
+@Table(name = "UserPrivileges")
+public class Privilege {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,14 +21,14 @@ public class Group {
     @Column(name = "code")
     private String code;
 
-    @ManyToMany(mappedBy = "groups")
-    @JsonIgnoreProperties("groups")
-    private Set<User> users = new HashSet<>();
+    @ManyToMany(mappedBy = "privileges")
+    @JsonIgnoreProperties("privileges")
+    private List<Role> role = new ArrayList<>();
 
-    public Group() {
+    public Privilege() {
     }
 
-    public Group(String name, String code) {
+    public Privilege(String name, String code) {
         this.name = name;
         this.code = code;
     }
@@ -58,11 +57,11 @@ public class Group {
         this.code = code;
     }
 
-    public Set<User> getUsers() {
-        return users;
+    public List<Role> getRole() {
+        return role;
     }
 
-    public void setUsers(Set<User> users) {
-        this.users = users;
+    public void setRole(List<Role> role) {
+        this.role = role;
     }
 }
