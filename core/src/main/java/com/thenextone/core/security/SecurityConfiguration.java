@@ -56,9 +56,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             .and()
             .authorizeRequests()
+
             .antMatchers("/api/users/authenticate").permitAll()
             .antMatchers("/api/groups/test").permitAll()
-            .anyRequest()
+
+            .antMatchers("*/*")
             .authenticated()
             .and()
             .exceptionHandling().authenticationEntryPoint((req, rsp, e) -> rsp.sendError(HttpServletResponse.SC_UNAUTHORIZED))

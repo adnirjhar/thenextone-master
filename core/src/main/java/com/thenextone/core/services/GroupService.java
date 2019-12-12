@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class GroupService {
 
@@ -21,6 +23,10 @@ public class GroupService {
 
     public Group save(Group group) {
         return this.groupRepository.save(group);
+    }
+
+    public List<Group> findAll() {
+        return this.groupRepository.findAll();
     }
 
 }

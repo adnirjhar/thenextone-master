@@ -12,7 +12,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -30,9 +29,6 @@ public class UserService {
     private GroupRepository groupRepository;
 
     @Autowired
-    private UserDetailsService userDetailsService;
-
-    @Autowired
     private AuthenticationManager authenticationManager;
 
     @Autowired
@@ -44,13 +40,12 @@ public class UserService {
     public String authenticate(String email, String password) throws Exception {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));
-            final User user = userRepository.findUserByEmail(email);
+            final User user = this.findUserByEmail(email);
             return jwtUtil.generateToken(user);
         }
         catch (BadCredentialsException | InternalAuthenticationServiceException ex) {
             throw new BadCredentialsException("Incorrect username or password");
         }
-
     }
 
     public List<User> fetchAllUsers() {
@@ -67,9 +62,7 @@ public class UserService {
         return this.userRepository.save(user);
     }
 
-    public User findFirstByEmail(String email) {
+    public User findUserByEmail(String email) {
         return this.userRepository.findFirstByEmail(email);
     }
-
-
 }

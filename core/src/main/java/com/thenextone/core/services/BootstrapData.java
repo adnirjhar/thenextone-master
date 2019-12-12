@@ -38,7 +38,7 @@ public class BootstrapData {
     private void loadUserOnStart() throws Exception {
         final String masterEmail = environment.getProperty("master.admin.email");
         final String masterPassword = environment.getProperty("master.admin.password");
-        User masterUser = userService.findFirstByEmail(masterEmail);
+        User masterUser = userService.findUserByEmail(masterEmail);
 
         if (masterUser == null) {
 
