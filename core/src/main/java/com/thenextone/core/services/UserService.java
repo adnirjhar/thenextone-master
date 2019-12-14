@@ -12,11 +12,14 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Component("myUserService")
 @Service
 public class UserService {
 
@@ -64,5 +67,9 @@ public class UserService {
 
     public User findUserByEmail(String email) {
         return this.userRepository.findFirstByEmail(email);
+    }
+
+    public boolean testtest(Authentication authentication, Object o, Object o1) {
+        return false;
     }
 }

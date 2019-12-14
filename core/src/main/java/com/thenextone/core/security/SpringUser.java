@@ -84,6 +84,14 @@ public class SpringUser implements UserDetails {
         return true;
     }
 
+    public List<Group> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(List<Group> groups) {
+        this.groups = groups;
+    }
+
     public List<Role> getRoles() {
         List<Role> roles = new ArrayList<>();
         this.groups.forEach(group -> {

@@ -19,13 +19,14 @@ public class GroupManager {
     @Autowired
     public GroupService groupService;
 
+    @PreAuthorize("hasPermission('GROUP','ADMIN')")
     @GetMapping(value = "/all")
-    @PreAuthorize("hasPermission('admin_role', 'admin_role')")
     public ResponseEntity<List<Group>> getAllUsers() {
         List<Group> groups = this.groupService.findAll();
         return new ResponseEntity<List<Group>>(groups, HttpStatus.OK);
     }
 
+    @PreAuthorize("hasPermission('GROUP','ADMIN')")
     @GetMapping(value = "/test")
     public ResponseEntity<String> test() {
         return new ResponseEntity<String>("Test test test", HttpStatus.OK);
