@@ -4,6 +4,7 @@ import com.thenextone.core.exceptions.CoreErrorHandler;
 import com.thenextone.core.exceptions.UnAuthorizedException;
 import com.thenextone.core.util.JWTUtil;
 import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -49,13 +50,10 @@ public class JWTRequestFilter extends OncePerRequestFilter {
                     token.setDetails(new WebAuthenticationDetailsSource().buildDetails(httpServletRequest));
                     SecurityContextHolder.getContext().setAuthentication(token);
                 }
-                else {
-                    SecurityContextHolder.getContext().setAuthentication(null);
-                }
             }
             filterChain.doFilter(httpServletRequest,httpServletResponse);
         }
-        catch (ExpiredJwtException | SignatureException ex) {
+        catch (ExpiredJwtException | SignatureException | StringIndexOutOfBoundsException | MalformedJwtException ex) {
             CoreErrorHandler.writeExceptionToResponse(
                     "Un Authorized fellow",
                     httpServletRequest,

@@ -51,15 +51,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-            .csrf().disable()
-            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-            .and()
-            .authorizeRequests()
+        http.csrf().disable()
+            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
-            .antMatchers("/api/users/authenticate").permitAll()
+        http.authorizeRequests()
+            .antMatchers("/api/users/authenticate")
+            .permitAll();
 
-            .antMatchers("*/*")
+        http.authorizeRequests()
+            .anyRequest()
             .authenticated()
             .and()
             .exceptionHandling().authenticationEntryPoint((req, rsp, e) -> rsp.sendError(HttpServletResponse.SC_UNAUTHORIZED))
