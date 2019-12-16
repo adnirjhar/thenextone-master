@@ -23,6 +23,9 @@ public class Config {
     @Column(name = "type")
     private String type;
 
+    @Column(name = "value")
+    private String value;
+
     @ManyToOne
     @JsonIgnoreProperties("child")
     @Nullable
@@ -35,23 +38,26 @@ public class Config {
 
     public Config() {}
 
-    public Config(String name, String code, String type) {
+    public Config(String name, String code, String type, String value) {
         this.name = name;
         this.code = code;
         this.type = type;
+        this.value = value;
     }
 
-    public Config(String name, String code, String type, Config parent) {
+    public Config(String name, String code, String type, String value, Config parent) {
         this.name = name;
         this.code = code;
         this.type = type;
+        this.value = value;
         this.parent = parent;
     }
 
-    public Config(String name, String code, String type, Config parent, List<Config> child) {
+    public Config(String name, String code, String type, String value, Config parent, List<Config> child) {
         this.name = name;
         this.code = code;
         this.type = type;
+        this.value = value;
         this.parent = parent;
         this.child = child;
     }
@@ -86,6 +92,14 @@ public class Config {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
     }
 
     public Config getParent() {

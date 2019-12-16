@@ -8,16 +8,6 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
-enum PermissionType {
-    GROUP ("GROUP"),
-    ROLE ("ROLE"),
-    PRIVILEGE ("PRIVILEGE");
-
-    private final String name;
-
-    PermissionType(String name) { this.name = name;}
-}
-
 @Component
 public class CustomPermissionEvaluator implements PermissionEvaluator {
 

@@ -1,5 +1,6 @@
 package com.thenextone.core.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -22,7 +23,7 @@ public class Role {
     private String code;
 
     @ManyToMany(mappedBy = "roles")
-    @JsonIgnoreProperties("roles")
+    @JsonIgnore
     private List<Group> group;
 
     @ManyToMany

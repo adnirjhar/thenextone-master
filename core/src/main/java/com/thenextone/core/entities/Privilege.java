@@ -1,6 +1,6 @@
 package com.thenextone.core.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ public class Privilege {
     private String code;
 
     @ManyToMany(mappedBy = "privileges")
-    @JsonIgnoreProperties("privileges")
+    @JsonIgnore
     private List<Role> role = new ArrayList<>();
 
     public Privilege() {

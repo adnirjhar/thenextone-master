@@ -44,6 +44,7 @@ public class ConfigService {
                 newConfig.getName(),
                 newConfig.getCode(),
                 newConfig.getType(),
+                newConfig.getValue(),
                 parent.orElse(null),
                 new ArrayList<Config>()
         );
@@ -71,7 +72,8 @@ public class ConfigService {
                 this.configRepository.save(new Config(
                     configDTO.getName(),
                     configDTO.getCode(),
-                    configDTO.getType())
+                    configDTO.getType(),
+                    configDTO.getValue())
                 )
             );
         }

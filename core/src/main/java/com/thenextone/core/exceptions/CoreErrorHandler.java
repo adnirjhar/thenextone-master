@@ -36,6 +36,11 @@ public class CoreErrorHandler extends ResponseEntityExceptionHandler {
         return error(e.getMessage(),request, HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(value = RoleNotFoundException.class)
+    public ResponseEntity<Object> roleNotFoundException(RuntimeException e, HttpServletRequest request) {
+        return error(e.getMessage(),request, HttpStatus.BAD_REQUEST);
+    }
+
     public static ResponseEntity<Object> error(String message, HttpServletRequest request, HttpStatus status) {
 
         HttpHeaders responseHeaders = new HttpHeaders();

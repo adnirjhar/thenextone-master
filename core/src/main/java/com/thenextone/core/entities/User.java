@@ -28,7 +28,7 @@ public class User {
 
     @JsonIgnore
     @Column(name = "password")
-    private String password;
+    public String password;
 
     @ManyToMany
     @JoinTable(

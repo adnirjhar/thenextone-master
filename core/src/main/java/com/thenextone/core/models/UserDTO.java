@@ -2,17 +2,17 @@ package com.thenextone.core.models;
 
 import com.thenextone.core.entities.Group;
 
-import java.util.Set;
+import java.util.List;
 
-public class NewUser {
+public class UserDTO {
 
     private String firstName;
     private String lastName;
     private String email;
     private String password;
-    private Set<Group> groups;
+    private List<Group> groups;
 
-    public NewUser(String firstName, String lastName, String email, String password, Set<Group> groups) {
+    public UserDTO(String firstName, String lastName, String email, String password, List<Group> groups) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -52,11 +52,11 @@ public class NewUser {
         this.password = password;
     }
 
-    public Set<Group> getGroups() {
+    public List<Group> getGroups() {
         return groups;
     }
 
-    public void setGroups(Set<Group> groups) {
+    public void setGroups(List<Group> groups) {
         this.groups = groups;
     }
 }

@@ -8,13 +8,15 @@ public class ConfigDTO {
     private String name;
     private String code;
     private String type;
+    private String value;
     private ConfigDTO parent;
     private List<ConfigDTO> children;
 
-    public ConfigDTO(String name, String code, String type, ConfigDTO parent, List<ConfigDTO> children) {
+    public ConfigDTO(String name, String code, String type, String value, ConfigDTO parent, List<ConfigDTO> children) {
         this.name = name;
         this.code = code;
         this.type = type;
+        this.value = value;
         this.parent = parent;
         this.children = children;
     }
@@ -49,6 +51,14 @@ public class ConfigDTO {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
     }
 
     public ConfigDTO getParent() {

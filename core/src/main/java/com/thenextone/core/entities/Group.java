@@ -1,5 +1,6 @@
 package com.thenextone.core.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -22,7 +23,7 @@ public class Group {
     private String code;
 
     @ManyToMany(mappedBy = "groups")
-    @JsonIgnoreProperties("groups")
+    @JsonIgnore
     private List<User> users = new ArrayList<>();
 
     @ManyToMany

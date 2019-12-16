@@ -4,6 +4,7 @@ import com.thenextone.core.entities.Group;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface GroupRepository extends CrudRepository<Group, Integer> {
 
@@ -14,4 +15,6 @@ public interface GroupRepository extends CrudRepository<Group, Integer> {
     public Group save(Group newGroup);
 
     public Group findFirstByCode(String code);
+
+    public Optional<Group> findById(Integer id);
 }
