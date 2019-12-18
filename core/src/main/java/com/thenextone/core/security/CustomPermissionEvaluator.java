@@ -14,9 +14,9 @@ public class CustomPermissionEvaluator implements PermissionEvaluator {
     public CustomPermissionEvaluator() {}
 
     @Override
-    public boolean hasPermission(Authentication authentication, Object t, Object v) {
-        final String type = t.toString();
-        final List<String> values = Arrays.asList(v.toString().split(","));
+    public boolean hasPermission(Authentication authentication, Object permissionType, Object permissionValue) {
+        final String type = permissionType.toString();
+        final List<String> values = Arrays.asList(permissionValue.toString().split(","));
 
         if (!authentication.isAuthenticated()) return false;
 
