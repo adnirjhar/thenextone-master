@@ -3,6 +3,7 @@ package com.thenextone.app;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.cloud.config.server.EnableConfigServer;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
@@ -10,7 +11,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @SpringBootApplication(scanBasePackages = {"com.thenextone.app.*","com.thenextone.config.*","com.thenextone.core.*"})
 @EnableJpaRepositories(basePackages = {"com.thenextone.config.*","com.thenextone.core.*"})
 @EntityScan(basePackages = {"com.thenextone.config.*","com.thenextone.core.*"})
-public class TheNextOneMasterApplication {
+public class TheNextOneMasterApplication extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {
 		SpringApplication.run(TheNextOneMasterApplication.class, args);
